@@ -1,6 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   DollarSign,
   Landmark,
@@ -74,7 +76,26 @@ const QUICK_LINKS = [
 ];
 
 export default function DashboardPage() {
-  const { profile } = useUserProfile();
+  const { profile, resetProfile } = useUserProfile();
+  const router = useRouter();
+
+  // Redirect to onboarding if user hasn't entered their name
+  useEffect(() => {
+    if (!profile.name) {
+      router.push('/onboarding');
+    }
+  }, [profile.name, router]);
+
+  if (!profile.name) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <p className="text-slate-500">Redirecting to onboarding...</p>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
   const salary = 75000; // PGY-1 default
   const taxes = fallbackTaxes(salary);
   const netWorthData = fallbackNetWorth(profile.totalDebt, salary);
@@ -110,13 +131,21 @@ export default function DashboardPage() {
   return (
     <DashboardLayout>
       {/* Welcome */}
-      <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
-          Welcome, {profile.name}!
-        </h1>
-        <p className="text-slate-500 mt-1">
-          Here&apos;s your financial snapshot. {profile.specialty} residency at {profile.program}.
-        </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            Welcome, {profile.name}!
+          </h1>
+          <p className="text-slate-500 mt-1">
+            Here&apos;s your financial snapshot. {profile.specialty} residency at {profile.program}.
+          </p>
+        </div>
+        <button
+          onClick={() => { resetProfile(); router.push('/onboarding'); }}
+          className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 px-3 py-1.5 rounded-lg transition-colors"
+        >
+          Reset &amp; Start Over
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
