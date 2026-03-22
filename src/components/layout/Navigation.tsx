@@ -34,9 +34,9 @@ export default function Navigation() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground h-14 flex items-center justify-between px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-800 text-white h-14 flex items-center justify-between px-4">
         <Link href="/dashboard" className="flex items-center gap-2 font-bold text-lg">
-          <Stethoscope className="w-5 h-5 text-accent-emerald" />
+          <Stethoscope className="w-5 h-5 text-emerald-400" />
           MedFin
         </Link>
         <button
@@ -59,13 +59,13 @@ export default function Navigation() {
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed top-0 left-0 bottom-0 z-50 w-60 bg-primary text-primary-foreground flex flex-col transition-transform duration-200',
+          'fixed top-0 left-0 bottom-0 z-50 w-60 bg-slate-800 text-white flex flex-col transition-transform duration-200',
           'lg:translate-x-0',
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="h-16 flex items-center gap-2.5 px-6 border-b border-white/10">
-          <Stethoscope className="w-6 h-6 text-accent-emerald flex-shrink-0" />
+          <Stethoscope className="w-6 h-6 text-emerald-400 flex-shrink-0" />
           <span className="font-bold text-xl tracking-tight">MedFin</span>
         </div>
 
@@ -80,7 +80,7 @@ export default function Navigation() {
                 className={cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                   active
-                    ? 'bg-accent-blue text-white'
+                    ? 'bg-blue-600 text-white'
                     : 'text-white/70 hover:bg-white/10 hover:text-white'
                 )}
               >

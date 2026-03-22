@@ -66,13 +66,13 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-card flex flex-col">
+    <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Top bar */}
-      <div className="bg-white border-b border-card-border">
+      <div className="bg-white border-b border-slate-200">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center gap-2.5 mb-4">
-            <Stethoscope className="w-5 h-5 text-accent-emerald" />
-            <span className="font-bold text-lg text-primary">MedFin</span>
+            <Stethoscope className="w-5 h-5 text-emerald-600" />
+            <span className="font-bold text-lg text-slate-800">MedFin</span>
           </div>
           {/* Progress bar */}
           <div className="flex items-center gap-2">
@@ -81,13 +81,13 @@ export default function OnboardingPage() {
                 <div
                   className={cn(
                     'h-1.5 rounded-full flex-1 transition-colors duration-300',
-                    i < step ? 'bg-accent-emerald' : i === step ? 'bg-accent-blue' : 'bg-card-border'
+                    i < step ? 'bg-emerald-600' : i === step ? 'bg-blue-600' : 'bg-slate-200'
                   )}
                 />
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted mt-2">
+          <p className="text-xs text-slate-500 mt-2">
             Step {step + 1} of {STEPS.length}
           </p>
         </div>
@@ -99,11 +99,11 @@ export default function OnboardingPage() {
           <div className="flex items-center gap-3 mb-2">
             {(() => {
               const Icon = STEPS[step].icon;
-              return <Icon className="w-6 h-6 text-accent-blue" />;
+              return <Icon className="w-6 h-6 text-blue-600" />;
             })()}
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary">{STEPS[step].title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">{STEPS[step].title}</h1>
           </div>
-          <p className="text-muted mb-8">{STEPS[step].subtitle}</p>
+          <p className="text-slate-500 mb-8">{STEPS[step].subtitle}</p>
 
           {step === 0 && <Step1 profile={profile} onSubmit={handleNext} />}
           {step === 1 && <Step2 profile={profile} onSubmit={handleNext} onBack={handleBack} />}
@@ -123,7 +123,7 @@ export default function OnboardingPage() {
 
 function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm font-medium text-foreground mb-1.5">
+    <label htmlFor={htmlFor} className="block text-sm font-medium text-slate-900 mb-1.5">
       {children}
     </label>
   );
@@ -134,7 +134,7 @@ function InputField({ className, ...props }: React.InputHTMLAttributes<HTMLInput
     <input
       {...props}
       className={cn(
-        'w-full rounded-lg border border-card-border bg-white px-3 py-2.5 text-sm text-foreground placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue transition-colors',
+        'w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition-colors',
         className
       )}
     />
@@ -146,7 +146,7 @@ function SelectField({ className, children, ...props }: React.SelectHTMLAttribut
     <select
       {...props}
       className={cn(
-        'w-full rounded-lg border border-card-border bg-white px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue transition-colors',
+        'w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition-colors',
         className
       )}
     >
@@ -170,7 +170,7 @@ function NavButtons({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
@@ -179,7 +179,7 @@ function NavButtons({
       )}
       <button
         type="submit"
-        className="inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-blue/90 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors"
+        className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors"
       >
         {nextLabel} <ArrowRight className="w-4 h-4" />
       </button>
@@ -290,7 +290,7 @@ function Step2({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
             {...register('totalDebt', { valueAsNumber: true })}
           />
         </div>
-        <p className="text-xs text-muted mt-1">${(totalDebt || 0).toLocaleString()}</p>
+        <p className="text-xs text-slate-500 mt-1">${(totalDebt || 0).toLocaleString()}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -312,7 +312,7 @@ function Step2({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
         <div>
           <FieldLabel htmlFor="avgInterestRate">Avg Interest Rate (%)</FieldLabel>
           <InputField id="avgInterestRate" type="number" step={0.1} {...register('avgInterestRate', { valueAsNumber: true })} placeholder="6.5" />
-          <p className="text-xs text-muted mt-1">Enter as decimal, e.g. 0.065 for 6.5%</p>
+          <p className="text-xs text-slate-500 mt-1">Enter as decimal, e.g. 0.065 for 6.5%</p>
         </div>
         <div>
           <FieldLabel htmlFor="loanServicer">Loan Servicer</FieldLabel>
@@ -392,7 +392,7 @@ function Step3({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
       <div>
         <FieldLabel htmlFor="retirementBalance">Retirement Account Balance</FieldLabel>
         <InputField id="retirementBalance" type="number" {...register('retirementBalance', { valueAsNumber: true })} placeholder="0" />
-        <p className="text-xs text-muted mt-1">401(k), IRA, Roth IRA, etc. combined</p>
+        <p className="text-xs text-slate-500 mt-1">401(k), IRA, Roth IRA, etc. combined</p>
       </div>
 
       <NavButtons onBack={onBack} />
@@ -438,7 +438,7 @@ function Step4({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
             {...register('rentBudget', { valueAsNumber: true })}
           />
         </div>
-        <p className="text-xs text-muted mt-1">${(rentBudget || 0).toLocaleString()}/month</p>
+        <p className="text-xs text-slate-500 mt-1">${(rentBudget || 0).toLocaleString()}/month</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -484,7 +484,7 @@ function Step5({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
           <option value="yes">Yes</option>
           <option value="unsure">Not sure</option>
         </SelectField>
-        <p className="text-xs text-muted mt-1">This is separate from any employer-provided short-term disability.</p>
+        <p className="text-xs text-slate-500 mt-1">This is separate from any employer-provided short-term disability.</p>
       </div>
 
       <div>
@@ -560,8 +560,8 @@ function Step6({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
                 className={cn(
                   'flex items-center gap-2 px-3 py-2 rounded-lg border text-sm text-left transition-colors',
                   selected
-                    ? 'border-accent-blue bg-accent-blue/5 text-accent-blue font-medium'
-                    : 'border-card-border bg-white text-foreground hover:border-accent-blue/30'
+                    ? 'border-blue-600 bg-blue-50 text-blue-600 font-medium'
+                    : 'border-slate-200 bg-white text-slate-900 hover:border-blue-300'
                 )}
               >
                 {selected && <Check className="w-4 h-4 flex-shrink-0" />}

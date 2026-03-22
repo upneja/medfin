@@ -105,16 +105,16 @@ export default function DashboardPage() {
     { title: 'Open Roth IRA', timeframe: 'Before Tax Day 2027', category: 'financial' as const },
   ];
 
-  const categoryColors = { financial: 'text-accent-emerald', exam: 'text-accent-amber', clinical: 'text-accent-blue', career: 'text-accent-blue', administrative: 'text-muted' };
+  const categoryColors = { financial: 'text-emerald-600', exam: 'text-amber-600', clinical: 'text-blue-600', career: 'text-blue-600', administrative: 'text-slate-500' };
 
   return (
     <DashboardLayout>
       {/* Welcome */}
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
           Welcome, {profile.name}!
         </h1>
-        <p className="text-muted mt-1">
+        <p className="text-slate-500 mt-1">
           Here&apos;s your financial snapshot. {profile.specialty} residency at {profile.program}.
         </p>
       </div>
@@ -127,10 +127,10 @@ export default function DashboardPage() {
             <Row label="Federal Tax" value={`-${formatCurrency(taxes.federal / 12)}`} muted />
             <Row label="State + City" value={`-${formatCurrency((taxes.state + taxes.city) / 12)}`} muted />
             <Row label="FICA" value={`-${formatCurrency(taxes.fica / 12)}`} muted />
-            <div className="border-t border-card-border pt-3">
+            <div className="border-t border-slate-200 pt-3">
               <Row label="Take-Home Pay" value={formatCurrency(taxes.monthlyTakeHome)} bold />
             </div>
-            <p className="text-xs text-muted">
+            <p className="text-xs text-slate-500">
               Effective tax rate: {formatPercent(taxes.effectiveRate)}
             </p>
           </div>
@@ -141,9 +141,9 @@ export default function DashboardPage() {
           <div className="space-y-3">
             <Row label="Total Debt" value={formatCurrency(profile.totalDebt)} />
             <Row label="Est. IDR Payment" value={`${formatCurrency(loanPayment)}/mo`} />
-            <div className="mt-4 p-3 bg-accent-emerald/5 border border-accent-emerald/20 rounded-lg">
-              <p className="text-sm font-medium text-accent-emerald">PSLF Recommended</p>
-              <p className="text-xs text-muted mt-1">
+            <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+              <p className="text-sm font-medium text-emerald-600">PSLF Recommended</p>
+              <p className="text-xs text-slate-500 mt-1">
                 Your employer qualifies. Estimated forgiveness: {formatCurrency(profile.totalDebt * 0.6)} after 10 years.
               </p>
             </div>
@@ -174,7 +174,7 @@ export default function DashboardPage() {
           </div>
           <div className="flex flex-wrap gap-3 mt-2">
             {budgetData.map(d => (
-              <div key={d.name} className="flex items-center gap-1.5 text-xs text-muted">
+              <div key={d.name} className="flex items-center gap-1.5 text-xs text-slate-500">
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: d.color }} />
                 {d.name}
               </div>
@@ -188,11 +188,11 @@ export default function DashboardPage() {
             {actionItems.map((item, i) => (
               <label key={i} className="flex items-start gap-3 cursor-pointer group">
                 {item.done ? (
-                  <CheckCircle2 className="w-5 h-5 text-accent-emerald flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <Circle className="w-5 h-5 text-card-border group-hover:text-accent-blue flex-shrink-0 mt-0.5 transition-colors" />
+                  <Circle className="w-5 h-5 text-slate-200 group-hover:text-blue-600 flex-shrink-0 mt-0.5 transition-colors" />
                 )}
-                <span className="text-sm text-foreground">{item.text}</span>
+                <span className="text-sm text-slate-900">{item.text}</span>
               </label>
             ))}
           </div>
@@ -228,11 +228,11 @@ export default function DashboardPage() {
             {milestones.map((m, i) => (
               <div key={i} className="flex items-start gap-3">
                 <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
-                  m.category === 'financial' ? 'bg-accent-emerald' : 'bg-accent-amber'
+                  m.category === 'financial' ? 'bg-emerald-600' : 'bg-amber-600'
                 }`} />
                 <div>
-                  <p className="text-sm font-medium text-foreground">{m.title}</p>
-                  <p className="text-xs text-muted">{m.timeframe}</p>
+                  <p className="text-sm font-medium text-slate-900">{m.title}</p>
+                  <p className="text-xs text-slate-500">{m.timeframe}</p>
                 </div>
               </div>
             ))}
@@ -242,16 +242,16 @@ export default function DashboardPage() {
 
       {/* Quick Links */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-primary mb-4">Tools</h2>
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Tools</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {QUICK_LINKS.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="flex flex-col items-center gap-2 p-4 bg-white border border-card-border rounded-xl hover:shadow-md hover:border-accent-blue/30 transition-all text-center"
+              className="flex flex-col items-center gap-2 p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-300 transition-all text-center"
             >
-              <link.icon className="w-6 h-6 text-accent-blue" />
-              <span className="text-sm font-medium text-foreground">{link.label}</span>
+              <link.icon className="w-6 h-6 text-blue-600" />
+              <span className="text-sm font-medium text-slate-900">{link.label}</span>
             </Link>
           ))}
         </div>
@@ -278,20 +278,20 @@ function Card({
   className?: string;
 }) {
   const inner = (
-    <div className={`bg-white border border-card-border rounded-xl p-5 h-full ${className || ''}`}>
+    <div className={`bg-white border border-slate-200 rounded-2xl p-6 h-full shadow-sm ${className || ''}`}>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Icon className="w-4 h-4 text-accent-blue" />
-          <h3 className="text-sm font-semibold text-primary">{title}</h3>
+          <Icon className="w-4 h-4 text-blue-600" />
+          <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
         </div>
-        {href && <ArrowRight className="w-4 h-4 text-muted-light" />}
+        {href && <ArrowRight className="w-4 h-4 text-slate-400" />}
       </div>
       {children}
     </div>
   );
 
   if (href) {
-    return <Link href={href} className="block hover:shadow-md transition-shadow rounded-xl">{inner}</Link>;
+    return <Link href={href} className="block hover:shadow-md transition-shadow rounded-2xl">{inner}</Link>;
   }
   return inner;
 }
@@ -299,8 +299,8 @@ function Card({
 function Row({ label, value, muted, bold }: { label: string; value: string; muted?: boolean; bold?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <span className={`text-sm ${muted ? 'text-muted' : 'text-foreground'} ${bold ? 'font-semibold' : ''}`}>{label}</span>
-      <span className={`text-sm font-mono ${muted ? 'text-muted' : 'text-foreground'} ${bold ? 'font-semibold' : ''}`}>{value}</span>
+      <span className={`text-sm ${muted ? 'text-slate-500' : 'text-slate-900'} ${bold ? 'font-semibold' : ''}`}>{label}</span>
+      <span className={`text-sm font-mono ${muted ? 'text-slate-500' : 'text-slate-900'} ${bold ? 'font-semibold' : ''}`}>{value}</span>
     </div>
   );
 }

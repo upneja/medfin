@@ -109,18 +109,18 @@ export default function CareerPage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Career Projections</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Career Projections</h1>
+        <p className="text-slate-500 mt-1">
           Salary ranges, fellowship ROI, and long-term net worth forecasts.
         </p>
       </div>
 
       {/* Salary Range Chart */}
-      <div className="bg-white border border-card-border rounded-xl p-6 mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-1">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-1">
           Anesthesiology Salary by Practice Setting
         </h2>
-        <p className="text-sm text-muted mb-4">Range from 25th to 75th percentile. Marker shows median.</p>
+        <p className="text-sm text-slate-500 mb-4">Range from 25th to 75th percentile. Marker shows median.</p>
         <div className="h-56">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={salaryChartData} layout="vertical">
@@ -146,7 +146,7 @@ export default function CareerPage() {
         <div className="flex gap-6 mt-2 justify-center">
           {SALARY_DATA.map(s => (
             <div key={s.setting} className="text-center">
-              <p className="text-xs text-muted">{s.setting} median</p>
+              <p className="text-xs text-slate-500">{s.setting} median</p>
               <p className="text-sm font-semibold font-mono">{formatCurrency(s.median)}</p>
             </div>
           ))}
@@ -154,32 +154,32 @@ export default function CareerPage() {
       </div>
 
       {/* Fellowship ROI */}
-      <div className="bg-white border border-card-border rounded-xl p-6 mb-6">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
-          <GraduationCap className="w-5 h-5 text-accent-blue" />
-          <h2 className="text-lg font-semibold text-primary">Fellowship ROI Comparison</h2>
+          <GraduationCap className="w-5 h-5 text-blue-600" />
+          <h2 className="text-lg font-semibold text-slate-900">Fellowship ROI Comparison</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-card-border">
-                <th className="text-left py-2 pr-4 text-xs font-semibold text-muted uppercase">Fellowship</th>
-                <th className="text-left py-2 pr-4 text-xs font-semibold text-muted uppercase">Add&apos;l Years</th>
-                <th className="text-left py-2 pr-4 text-xs font-semibold text-muted uppercase">Salary Impact</th>
-                <th className="text-left py-2 pr-4 text-xs font-semibold text-muted uppercase">Median Salary</th>
-                <th className="text-left py-2 text-xs font-semibold text-muted uppercase">Notes</th>
+              <tr className="border-b border-slate-200">
+                <th className="text-left py-2 pr-4 text-xs font-semibold text-slate-500 uppercase">Fellowship</th>
+                <th className="text-left py-2 pr-4 text-xs font-semibold text-slate-500 uppercase">Add&apos;l Years</th>
+                <th className="text-left py-2 pr-4 text-xs font-semibold text-slate-500 uppercase">Salary Impact</th>
+                <th className="text-left py-2 pr-4 text-xs font-semibold text-slate-500 uppercase">Median Salary</th>
+                <th className="text-left py-2 text-xs font-semibold text-slate-500 uppercase">Notes</th>
               </tr>
             </thead>
             <tbody>
               {FELLOWSHIP_DATA.map(f => (
-                <tr key={f.name} className="border-b border-card-border last:border-0">
-                  <td className="py-3 pr-4 font-medium text-foreground">{f.name}</td>
-                  <td className="py-3 pr-4 text-muted">+{f.years} year{f.years > 1 ? 's' : ''}</td>
+                <tr key={f.name} className="border-b border-slate-200 last:border-0">
+                  <td className="py-3 pr-4 font-medium text-slate-900">{f.name}</td>
+                  <td className="py-3 pr-4 text-slate-500">+{f.years} year{f.years > 1 ? 's' : ''}</td>
                   <td className="py-3 pr-4">
-                    <span className="text-accent-emerald font-semibold">+{f.salaryImpact}%</span>
+                    <span className="text-emerald-600 font-semibold">+{f.salaryImpact}%</span>
                   </td>
                   <td className="py-3 pr-4 font-mono">{formatCurrency(f.medianSalary)}</td>
-                  <td className="py-3 text-muted">{f.description}</td>
+                  <td className="py-3 text-slate-500">{f.description}</td>
                 </tr>
               ))}
             </tbody>
@@ -188,11 +188,11 @@ export default function CareerPage() {
       </div>
 
       {/* Net Worth Projection */}
-      <div className="bg-white border border-card-border rounded-xl p-6 mb-6">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-accent-blue" />
-            <h2 className="text-lg font-semibold text-primary">Net Worth Projection</h2>
+            <TrendingUp className="w-5 h-5 text-blue-600" />
+            <h2 className="text-lg font-semibold text-slate-900">Net Worth Projection</h2>
           </div>
           <div className="flex gap-1">
             {(['10', '20', '30'] as const).map(v => (
@@ -202,8 +202,8 @@ export default function CareerPage() {
                 className={cn(
                   'px-3 py-1 text-xs font-medium rounded-lg border transition-colors',
                   projectionView === v
-                    ? 'bg-accent-blue text-white border-accent-blue'
-                    : 'bg-white text-muted border-card-border hover:border-accent-blue/30'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-slate-500 border-slate-200 hover:border-blue-300'
                 )}
               >
                 {v} Years
@@ -234,33 +234,33 @@ export default function CareerPage() {
       </div>
 
       {/* Live Like a Resident Calculator */}
-      <div className="bg-accent-emerald/5 border border-accent-emerald/20 rounded-xl p-6">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Calculator className="w-5 h-5 text-accent-emerald" />
-          <h2 className="text-lg font-semibold text-primary">&ldquo;Live Like a Resident&rdquo; Calculator</h2>
+          <Calculator className="w-5 h-5 text-emerald-600" />
+          <h2 className="text-lg font-semibold text-slate-900">&ldquo;Live Like a Resident&rdquo; Calculator</h2>
         </div>
-        <p className="text-sm text-muted mb-6">
+        <p className="text-sm text-slate-500 mb-6">
           What if you kept your resident lifestyle on an attending salary?
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-card-border">
-            <p className="text-xs text-muted mb-1">Attending Salary</p>
-            <p className="text-xl font-bold font-mono text-primary">{formatCurrency(attendingSalary)}</p>
+          <div className="bg-white rounded-lg p-4 border border-slate-200">
+            <p className="text-xs text-slate-500 mb-1">Attending Salary</p>
+            <p className="text-xl font-bold font-mono text-slate-900">{formatCurrency(attendingSalary)}</p>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-card-border">
-            <p className="text-xs text-muted mb-1">Living on</p>
-            <p className="text-xl font-bold font-mono text-primary">{formatCurrency(livingCost)}/yr</p>
+          <div className="bg-white rounded-lg p-4 border border-slate-200">
+            <p className="text-xs text-slate-500 mb-1">Living on</p>
+            <p className="text-xl font-bold font-mono text-slate-900">{formatCurrency(livingCost)}/yr</p>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-card-border">
-            <p className="text-xs text-muted mb-1">Annual Surplus</p>
-            <p className="text-xl font-bold font-mono text-accent-emerald">{formatCurrency(annualSurplus)}</p>
+          <div className="bg-white rounded-lg p-4 border border-slate-200">
+            <p className="text-xs text-slate-500 mb-1">Annual Surplus</p>
+            <p className="text-xl font-bold font-mono text-emerald-600">{formatCurrency(annualSurplus)}</p>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-card-border">
-            <p className="text-xs text-muted mb-1">Loans Paid Off In</p>
-            <p className="text-xl font-bold font-mono text-accent-blue">{yearsToPayoff} year{yearsToPayoff !== 1 ? 's' : ''}</p>
+          <div className="bg-white rounded-lg p-4 border border-slate-200">
+            <p className="text-xs text-slate-500 mb-1">Loans Paid Off In</p>
+            <p className="text-xl font-bold font-mono text-blue-600">{yearsToPayoff} year{yearsToPayoff !== 1 ? 's' : ''}</p>
           </div>
         </div>
-        <p className="text-xs text-muted mt-4">
+        <p className="text-xs text-slate-500 mt-4">
           By maintaining a {formatCurrency(livingCost)} lifestyle on a {formatCurrency(attendingSalary)} salary (after {Math.round(taxRate * 100)}% taxes),
           you could pay off {formatCurrency(profile.totalDebt)} in student loans in approximately {yearsToPayoff} year{yearsToPayoff !== 1 ? 's' : ''} and
           then rapidly build wealth.

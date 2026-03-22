@@ -74,9 +74,9 @@ function getInsuranceNeeds(profile: { hasDisability: string; hasLife: string; de
 }
 
 const SEVERITY_CONFIG = {
-  critical: { label: 'Critical', color: 'text-accent-red', bg: 'bg-red-50', border: 'border-red-200', icon: ShieldX },
-  important: { label: 'Important', color: 'text-accent-amber', bg: 'bg-amber-50', border: 'border-amber-200', icon: ShieldAlert },
-  'nice-to-have': { label: 'Nice to Have', color: 'text-accent-blue', bg: 'bg-blue-50', border: 'border-blue-200', icon: Info },
+  critical: { label: 'Critical', color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', icon: ShieldX },
+  important: { label: 'Important', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', icon: ShieldAlert },
+  'nice-to-have': { label: 'Nice to Have', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-200', icon: Info },
 };
 
 const CARRIERS = [
@@ -97,8 +97,8 @@ export default function InsurancePage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Insurance Advisor</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Insurance Advisor</h1>
+        <p className="text-slate-500 mt-1">
           Protect your most valuable asset — your future earning potential.
         </p>
       </div>
@@ -107,12 +107,12 @@ export default function InsurancePage() {
       {gaps.length > 0 && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-8">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 text-accent-amber flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-sm font-semibold text-slate-900">
                 {gaps.length} insurance gap{gaps.length > 1 ? 's' : ''} identified
               </p>
-              <p className="text-sm text-muted mt-1">
+              <p className="text-sm text-slate-500 mt-1">
                 Estimated cost to fill all gaps: {formatCurrency(totalMonthlyCost)}/month ({formatCurrency(totalMonthlyCost * 12)}/year)
               </p>
             </div>
@@ -121,19 +121,19 @@ export default function InsurancePage() {
       )}
 
       {/* What You Have vs What You Need */}
-      <div className="bg-white border border-card-border rounded-xl overflow-hidden mb-8">
-        <div className="grid grid-cols-12 gap-0 bg-card border-b border-card-border px-5 py-3">
-          <div className="col-span-3 text-xs font-semibold text-muted uppercase">Type</div>
-          <div className="col-span-2 text-xs font-semibold text-muted uppercase">Priority</div>
-          <div className="col-span-3 text-xs font-semibold text-muted uppercase">You Have</div>
-          <div className="col-span-3 text-xs font-semibold text-muted uppercase">You Need</div>
-          <div className="col-span-1 text-xs font-semibold text-muted uppercase text-right">Cost</div>
+      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8 shadow-sm">
+        <div className="grid grid-cols-12 gap-0 bg-slate-50 border-b border-slate-200 px-5 py-3">
+          <div className="col-span-3 text-xs font-semibold text-slate-500 uppercase">Type</div>
+          <div className="col-span-2 text-xs font-semibold text-slate-500 uppercase">Priority</div>
+          <div className="col-span-3 text-xs font-semibold text-slate-500 uppercase">You Have</div>
+          <div className="col-span-3 text-xs font-semibold text-slate-500 uppercase">You Need</div>
+          <div className="col-span-1 text-xs font-semibold text-slate-500 uppercase text-right">Cost</div>
         </div>
         {needs.map((n, i) => {
           const sev = SEVERITY_CONFIG[n.severity];
           return (
-            <div key={i} className={cn('grid grid-cols-12 gap-0 px-5 py-4 items-center', i < needs.length - 1 && 'border-b border-card-border')}>
-              <div className="col-span-3 text-sm font-medium text-foreground">{n.type}</div>
+            <div key={i} className={cn('grid grid-cols-12 gap-0 px-5 py-4 items-center', i < needs.length - 1 && 'border-b border-slate-200')}>
+              <div className="col-span-3 text-sm font-medium text-slate-900">{n.type}</div>
               <div className="col-span-2">
                 <span className={cn('text-xs font-semibold px-2 py-0.5 rounded-full', sev.bg, sev.color)}>
                   {sev.label}
@@ -142,17 +142,17 @@ export default function InsurancePage() {
               <div className="col-span-3">
                 <div className="flex items-center gap-1.5">
                   {n.hasIt ? (
-                    <CheckCircle2 className="w-4 h-4 text-accent-emerald flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                   ) : (
-                    <ShieldX className="w-4 h-4 text-accent-red flex-shrink-0" />
+                    <ShieldX className="w-4 h-4 text-red-600 flex-shrink-0" />
                   )}
-                  <span className="text-sm text-muted">{n.currentCoverage}</span>
+                  <span className="text-sm text-slate-500">{n.currentCoverage}</span>
                 </div>
               </div>
-              <div className="col-span-3 text-sm text-foreground">{n.recommendedCoverage}</div>
+              <div className="col-span-3 text-sm text-slate-900">{n.recommendedCoverage}</div>
               <div className="col-span-1 text-sm font-mono text-right">
                 {n.hasIt ? (
-                  <span className="text-accent-emerald">--</span>
+                  <span className="text-emerald-600">--</span>
                 ) : (
                   <span>{formatCurrency(n.estimatedMonthlyCost)}/mo</span>
                 )}
@@ -168,56 +168,56 @@ export default function InsurancePage() {
           const sev = SEVERITY_CONFIG[n.severity];
           const SevIcon = sev.icon;
           return (
-            <div key={i} className={cn('bg-white border rounded-xl p-5', n.hasIt ? 'border-card-border' : sev.border)}>
+            <div key={i} className={cn('bg-white border rounded-2xl p-5 shadow-sm', n.hasIt ? 'border-slate-200' : sev.border)}>
               <div className="flex items-start gap-3 mb-3">
-                <SevIcon className={cn('w-5 h-5 flex-shrink-0', n.hasIt ? 'text-accent-emerald' : sev.color)} />
+                <SevIcon className={cn('w-5 h-5 flex-shrink-0', n.hasIt ? 'text-emerald-600' : sev.color)} />
                 <div>
-                  <h3 className="text-sm font-semibold text-primary">{n.type}</h3>
-                  <p className="text-xs text-muted mt-0.5">
+                  <h3 className="text-sm font-semibold text-slate-900">{n.type}</h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
                     {n.hasIt ? 'You have this covered' : `${sev.label} — ${formatCurrency(n.estimatedMonthlyCost)}/month`}
                   </p>
                 </div>
               </div>
-              <p className="text-sm text-muted leading-relaxed">{n.reasoning}</p>
+              <p className="text-sm text-slate-500 leading-relaxed">{n.reasoning}</p>
             </div>
           );
         })}
       </div>
 
       {/* Why This Matters */}
-      <div className="bg-primary text-primary-foreground rounded-xl p-6 mb-8">
+      <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 mb-8">
         <h2 className="text-lg font-semibold mb-3">Why This Matters for Anesthesiologists</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div>
-            <p className="text-3xl font-bold text-accent-emerald">25%</p>
+            <p className="text-3xl font-bold text-emerald-400">25%</p>
             <p className="text-sm text-white/70 mt-1">of physicians will experience a disability before retirement</p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-accent-emerald">$8M+</p>
+            <p className="text-3xl font-bold text-emerald-400">$8M+</p>
             <p className="text-sm text-white/70 mt-1">lifetime earning potential at risk without disability coverage</p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-accent-emerald">40%</p>
+            <p className="text-3xl font-bold text-emerald-400">40%</p>
             <p className="text-sm text-white/70 mt-1">cheaper premiums when purchased during residency vs. attending</p>
           </div>
         </div>
       </div>
 
       {/* Recommended Carriers */}
-      <div className="bg-white border border-card-border rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">Recommended Carriers</h2>
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Recommended Carriers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {CARRIERS.map(c => (
-            <div key={c.name} className="border border-card-border rounded-lg p-4">
+            <div key={c.name} className="border border-slate-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-semibold text-primary">{c.name}</h3>
-                <span className="text-xs bg-card text-muted px-2 py-0.5 rounded">{c.specialty}</span>
+                <h3 className="text-sm font-semibold text-slate-900">{c.name}</h3>
+                <span className="text-xs bg-slate-50 text-slate-500 px-2 py-0.5 rounded">{c.specialty}</span>
               </div>
-              <p className="text-xs text-muted">{c.note}</p>
+              <p className="text-xs text-slate-500">{c.note}</p>
             </div>
           ))}
         </div>
-        <p className="text-xs text-muted-light mt-4">
+        <p className="text-xs text-slate-400 mt-4">
           These are informational recommendations, not endorsements. Always compare quotes and read policy details carefully.
         </p>
       </div>

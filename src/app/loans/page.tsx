@@ -106,8 +106,8 @@ export default function LoansPage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Loan Strategy</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Loan Strategy</h1>
+        <p className="text-slate-500 mt-1">
           Compare repayment paths for your {formatCurrency(profile.totalDebt)} in student loans.
         </p>
       </div>
@@ -118,41 +118,41 @@ export default function LoansPage() {
           <div
             key={s.name}
             className={cn(
-              'bg-white border rounded-xl p-6 relative',
-              s.recommended ? 'border-accent-emerald border-2 shadow-md' : 'border-card-border'
+              'bg-white border rounded-2xl p-6 relative shadow-sm',
+              s.recommended ? 'border-emerald-600 border-2 shadow-md' : 'border-slate-200'
             )}
           >
             {s.recommended && (
-              <div className="absolute -top-3 left-4 bg-accent-emerald text-white text-xs font-semibold px-3 py-1 rounded-full">
+              <div className="absolute -top-3 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                 Recommended
               </div>
             )}
-            <h3 className="text-lg font-semibold text-primary mb-1">{s.name}</h3>
-            <p className="text-sm text-muted mb-5">{s.description}</p>
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">{s.name}</h3>
+            <p className="text-sm text-slate-500 mb-5">{s.description}</p>
 
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-accent-blue flex-shrink-0" />
-                <span className="text-sm text-muted">Monthly Payment</span>
+                <TrendingDown className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span className="text-sm text-slate-500">Monthly Payment</span>
                 <span className="ml-auto text-sm font-semibold font-mono">{formatCurrency(s.monthlyPayment)}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-accent-blue flex-shrink-0" />
-                <span className="text-sm text-muted">Total Paid</span>
+                <Landmark className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span className="text-sm text-slate-500">Total Paid</span>
                 <span className="ml-auto text-sm font-semibold font-mono">{formatCurrency(s.totalPaid)}</span>
               </div>
               {s.amountForgiven > 0 && (
                 <div className="flex items-center gap-2">
-                  <Gift className="w-4 h-4 text-accent-emerald flex-shrink-0" />
-                  <span className="text-sm text-muted">Amount Forgiven</span>
-                  <span className="ml-auto text-sm font-semibold font-mono text-accent-emerald">
+                  <Gift className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                  <span className="text-sm text-slate-500">Amount Forgiven</span>
+                  <span className="ml-auto text-sm font-semibold font-mono text-emerald-600">
                     {formatCurrency(s.amountForgiven)}
                   </span>
                 </div>
               )}
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-accent-blue flex-shrink-0" />
-                <span className="text-sm text-muted">Years to Complete</span>
+                <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span className="text-sm text-slate-500">Years to Complete</span>
                 <span className="ml-auto text-sm font-semibold font-mono">{s.yearsToComplete}</span>
               </div>
             </div>
@@ -161,19 +161,19 @@ export default function LoansPage() {
       </div>
 
       {/* Interactive toggles */}
-      <div className="bg-white border border-card-border rounded-xl p-6 mb-8">
-        <h2 className="text-lg font-semibold text-primary mb-4">Adjust Your Assumptions</h2>
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-8 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Adjust Your Assumptions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">Fellowship Plans</label>
+            <label className="text-sm font-medium text-slate-900 mb-2 block">Fellowship Plans</label>
             <div className="flex gap-2">
               <button
                 onClick={() => setFellowship(false)}
                 className={cn(
                   'flex-1 py-2 px-4 rounded-lg text-sm font-medium border transition-colors',
                   !fellowship
-                    ? 'bg-accent-blue text-white border-accent-blue'
-                    : 'bg-white text-foreground border-card-border hover:border-accent-blue/30'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-300'
                 )}
               >
                 No Fellowship
@@ -183,8 +183,8 @@ export default function LoansPage() {
                 className={cn(
                   'flex-1 py-2 px-4 rounded-lg text-sm font-medium border transition-colors',
                   fellowship
-                    ? 'bg-accent-blue text-white border-accent-blue'
-                    : 'bg-white text-foreground border-card-border hover:border-accent-blue/30'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-300'
                 )}
               >
                 Fellowship
@@ -192,15 +192,15 @@ export default function LoansPage() {
             </div>
           </div>
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">Career Path</label>
+            <label className="text-sm font-medium text-slate-900 mb-2 block">Career Path</label>
             <div className="flex gap-2">
               <button
                 onClick={() => setCareer('academic')}
                 className={cn(
                   'flex-1 py-2 px-4 rounded-lg text-sm font-medium border transition-colors',
                   career === 'academic'
-                    ? 'bg-accent-blue text-white border-accent-blue'
-                    : 'bg-white text-foreground border-card-border hover:border-accent-blue/30'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-300'
                 )}
               >
                 Academic
@@ -210,8 +210,8 @@ export default function LoansPage() {
                 className={cn(
                   'flex-1 py-2 px-4 rounded-lg text-sm font-medium border transition-colors',
                   career === 'private_practice'
-                    ? 'bg-accent-blue text-white border-accent-blue'
-                    : 'bg-white text-foreground border-card-border hover:border-accent-blue/30'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-slate-900 border-slate-200 hover:border-blue-300'
                 )}
               >
                 Private Practice
@@ -222,15 +222,15 @@ export default function LoansPage() {
       </div>
 
       {/* Action Items */}
-      <div className="bg-white border border-card-border rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">Action Items</h2>
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Action Items</h2>
         <div className="space-y-3">
           {actionItems.map((item, i) => (
             <div key={i} className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-accent-blue/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-xs font-bold text-accent-blue">{i + 1}</span>
+              <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-xs font-bold text-blue-600">{i + 1}</span>
               </div>
-              <p className="text-sm text-foreground">{item}</p>
+              <p className="text-sm text-slate-900">{item}</p>
             </div>
           ))}
         </div>

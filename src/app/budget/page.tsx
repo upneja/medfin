@@ -28,10 +28,10 @@ const DEFAULT_CATEGORIES: BudgetCategory[] = [
 ];
 
 function getBudgetHealth(savingsRate: number): { label: string; color: string; bg: string } {
-  if (savingsRate >= 0.15) return { label: 'Excellent', color: 'text-accent-emerald', bg: 'bg-accent-emerald/10' };
-  if (savingsRate >= 0.05) return { label: 'Good', color: 'text-accent-blue', bg: 'bg-accent-blue/10' };
-  if (savingsRate >= 0) return { label: 'Tight', color: 'text-accent-amber', bg: 'bg-accent-amber/10' };
-  return { label: 'Over Budget', color: 'text-accent-red', bg: 'bg-red-50' };
+  if (savingsRate >= 0.15) return { label: 'Excellent', color: 'text-emerald-600', bg: 'bg-emerald-50' };
+  if (savingsRate >= 0.05) return { label: 'Good', color: 'text-blue-600', bg: 'bg-blue-50' };
+  if (savingsRate >= 0) return { label: 'Tight', color: 'text-amber-600', bg: 'bg-amber-50' };
+  return { label: 'Over Budget', color: 'text-red-600', bg: 'bg-red-50' };
 }
 
 export default function BudgetPage() {
@@ -66,8 +66,8 @@ export default function BudgetPage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Budget Builder</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Budget Builder</h1>
+        <p className="text-slate-500 mt-1">
           Build a realistic monthly budget on your resident salary.
         </p>
       </div>
@@ -76,28 +76,28 @@ export default function BudgetPage() {
         {/* Main budget area */}
         <div className="lg:col-span-2 space-y-6">
           {/* Income section */}
-          <div className="bg-white border border-card-border rounded-xl p-6">
-            <h2 className="text-sm font-semibold text-primary mb-4">Monthly Income</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h2 className="text-sm font-semibold text-slate-900 mb-4">Monthly Income</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-muted">Gross Salary</p>
+                <p className="text-xs text-slate-500">Gross Salary</p>
                 <p className="text-lg font-semibold font-mono">{formatCurrency(salary / 12)}</p>
               </div>
               <div>
-                <p className="text-xs text-muted">Take-Home (after tax)</p>
-                <p className="text-lg font-semibold font-mono text-accent-emerald">{formatCurrency(monthlyTakeHome)}</p>
+                <p className="text-xs text-slate-500">Take-Home (after tax)</p>
+                <p className="text-lg font-semibold font-mono text-emerald-600">{formatCurrency(monthlyTakeHome)}</p>
               </div>
             </div>
           </div>
 
           {/* Expense categories */}
-          <div className="bg-white border border-card-border rounded-xl p-6">
-            <h2 className="text-sm font-semibold text-primary mb-4">Monthly Expenses</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h2 className="text-sm font-semibold text-slate-900 mb-4">Monthly Expenses</h2>
             <div className="space-y-5">
               {categories.map((cat, i) => (
                 <div key={cat.name}>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-sm font-medium text-foreground">{cat.name}</label>
+                    <label className="text-sm font-medium text-slate-900">{cat.name}</label>
                     <span className="text-sm font-mono font-semibold">{formatCurrency(cat.amount)}</span>
                   </div>
                   <input
@@ -109,7 +109,7 @@ export default function BudgetPage() {
                     onChange={e => updateCategory(i, Number(e.target.value))}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-xs text-muted-light mt-0.5">
+                  <div className="flex justify-between text-xs text-slate-400 mt-0.5">
                     <span>{formatCurrency(cat.min)}</span>
                     <span>{formatCurrency(cat.max)}</span>
                   </div>
@@ -122,27 +122,27 @@ export default function BudgetPage() {
         {/* Sidebar summary */}
         <div className="space-y-6">
           {/* Summary card */}
-          <div className="bg-white border border-card-border rounded-xl p-6 sticky top-20">
-            <h2 className="text-sm font-semibold text-primary mb-4">Summary</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 sticky top-20 shadow-sm">
+            <h2 className="text-sm font-semibold text-slate-900 mb-4">Summary</h2>
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Take-Home Pay</span>
+                <span className="text-slate-500">Take-Home Pay</span>
                 <span className="font-mono font-semibold">{formatCurrency(monthlyTakeHome)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Total Expenses</span>
+                <span className="text-slate-500">Total Expenses</span>
                 <span className="font-mono font-semibold">-{formatCurrency(totalExpenses)}</span>
               </div>
-              <div className="border-t border-card-border pt-3">
+              <div className="border-t border-slate-200 pt-3">
                 <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-foreground">Remaining</span>
-                  <span className={cn('font-mono font-bold', remaining >= 0 ? 'text-accent-emerald' : 'text-accent-red')}>
+                  <span className="font-semibold text-slate-900">Remaining</span>
+                  <span className={cn('font-mono font-bold', remaining >= 0 ? 'text-emerald-600' : 'text-red-600')}>
                     {formatCurrency(remaining)}
                   </span>
                 </div>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted">Savings Rate</span>
+                <span className="text-slate-500">Savings Rate</span>
                 <span className="font-mono">{formatPercent(Math.max(0, savingsRate))}</span>
               </div>
             </div>
@@ -160,24 +160,24 @@ export default function BudgetPage() {
 
           {/* Surplus recommendation */}
           {remaining > 0 && (
-            <div className="bg-white border border-card-border rounded-xl p-6">
-              <h2 className="text-sm font-semibold text-primary mb-3">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+              <h2 className="text-sm font-semibold text-slate-900 mb-3">
                 What to do with your {formatCurrency(remaining)} surplus
               </h2>
-              <p className="text-xs text-muted mb-4">WCI Financial Waterfall</p>
+              <p className="text-xs text-slate-500 mb-4">WCI Financial Waterfall</p>
               <div className="space-y-3">
                 {waterfall.map((w, i) => (
                   <div key={i}>
                     <div className="flex items-start gap-2">
-                      <ArrowDown className="w-3.5 h-3.5 text-accent-blue flex-shrink-0 mt-0.5" />
+                      <ArrowDown className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
                       <div className="flex-1">
                         <div className="flex justify-between">
-                          <span className="text-xs text-foreground">{w.label}</span>
+                          <span className="text-xs text-slate-900">{w.label}</span>
                           <span className="text-xs font-mono font-semibold">{formatCurrency(w.amount)}</span>
                         </div>
                       </div>
                     </div>
-                    {i < waterfall.length - 1 && <div className="ml-1.5 w-px h-2 bg-card-border" />}
+                    {i < waterfall.length - 1 && <div className="ml-1.5 w-px h-2 bg-slate-200" />}
                   </div>
                 ))}
               </div>

@@ -83,9 +83,9 @@ function getRentToIncomeRatio(rent: number, salary: number = 75000): number {
 }
 
 function getRatioColor(ratio: number): string {
-  if (ratio <= 0.25) return 'text-accent-emerald';
-  if (ratio <= 0.30) return 'text-accent-amber';
-  return 'text-accent-red';
+  if (ratio <= 0.25) return 'text-emerald-600';
+  if (ratio <= 0.30) return 'text-amber-600';
+  return 'text-red-600';
 }
 
 function getRatioLabel(ratio: number): string {
@@ -110,20 +110,20 @@ export default function HousingPage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Housing Comparison</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Housing Comparison</h1>
+        <p className="text-slate-500 mt-1">
           Find the right neighborhood for your budget and commute.
         </p>
       </div>
 
       {/* Savings callout */}
-      <div className="bg-accent-emerald/5 border border-accent-emerald/20 rounded-xl p-5 mb-8 flex items-start gap-3">
-        <CheckCircle2 className="w-5 h-5 text-accent-emerald flex-shrink-0 mt-0.5" />
+      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 mb-8 flex items-start gap-3">
+        <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
         <div>
-          <p className="text-sm font-semibold text-accent-emerald">
+          <p className="text-sm font-semibold text-emerald-600">
             Living in {recommended.name} saves you {formatCurrency(annualSavings)}/year vs Kips Bay
           </p>
-          <p className="text-xs text-muted mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Plus a shorter commute to your primary training site at Brooklyn Methodist.
           </p>
         </div>
@@ -141,36 +141,36 @@ export default function HousingPage() {
             <div
               key={n.id}
               className={cn(
-                'bg-white border rounded-xl p-5 relative',
-                n.recommended ? 'border-accent-emerald border-2' : 'border-card-border'
+                'bg-white border rounded-2xl p-5 relative shadow-sm',
+                n.recommended ? 'border-emerald-600 border-2' : 'border-slate-200'
               )}
             >
               {n.recommended && (
-                <div className="absolute -top-3 left-4 bg-accent-emerald text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute -top-3 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   Recommended
                 </div>
               )}
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-primary">{n.name}</h3>
-                  <p className="text-xs text-muted">{n.borough}</p>
+                  <h3 className="text-lg font-semibold text-slate-900">{n.name}</h3>
+                  <p className="text-xs text-slate-500">{n.borough}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-lg font-bold font-mono text-primary">{formatCurrency(n.medianRent)}</p>
-                  <p className="text-xs text-muted">median 1BR</p>
+                  <p className="text-lg font-bold font-mono text-slate-900">{formatCurrency(n.medianRent)}</p>
+                  <p className="text-xs text-slate-500">median 1BR</p>
                 </div>
               </div>
 
               {/* Transit times */}
               <div className="space-y-2 mb-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <Clock className="w-3.5 h-3.5 text-muted-light" />
-                  <span className="text-muted">Brooklyn campus</span>
+                  <Clock className="w-3.5 h-3.5 text-slate-400" />
+                  <span className="text-slate-500">Brooklyn campus</span>
                   <span className="ml-auto font-medium">{n.transitBrooklyn} min</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Clock className="w-3.5 h-3.5 text-muted-light" />
-                  <span className="text-muted">Manhattan campus</span>
+                  <Clock className="w-3.5 h-3.5 text-slate-400" />
+                  <span className="text-slate-500">Manhattan campus</span>
                   <span className="ml-auto font-medium">{n.transitManhattan} min</span>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function HousingPage() {
               {/* Rent to income gauge */}
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-muted">Rent-to-Income</span>
+                  <span className="text-xs text-slate-500">Rent-to-Income</span>
                   <span className={cn('text-xs font-semibold', ratioColor)}>
                     {Math.round(ratio * 100)}% — {ratioLabel}
                   </span>
@@ -187,7 +187,7 @@ export default function HousingPage() {
                   <div
                     className={cn(
                       'h-full rounded-full transition-all',
-                      ratio <= 0.25 ? 'bg-accent-emerald' : ratio <= 0.30 ? 'bg-accent-amber' : 'bg-accent-red'
+                      ratio <= 0.25 ? 'bg-emerald-600' : ratio <= 0.30 ? 'bg-amber-600' : 'bg-red-600'
                     )}
                     style={{ width: `${ratioPercent}%` }}
                   />
@@ -197,7 +197,7 @@ export default function HousingPage() {
               {/* Highlights */}
               <div className="flex flex-wrap gap-1.5">
                 {n.highlights.map(h => (
-                  <span key={h} className="text-xs bg-card text-muted px-2 py-0.5 rounded">
+                  <span key={h} className="text-xs bg-slate-50 text-slate-500 px-2 py-0.5 rounded">
                     {h}
                   </span>
                 ))}
@@ -208,8 +208,8 @@ export default function HousingPage() {
       </div>
 
       {/* Annual cost chart */}
-      <div className="bg-white border border-card-border rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">Annual Rent Comparison</h2>
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-slate-900 mb-4">Annual Rent Comparison</h2>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} layout="vertical">

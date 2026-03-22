@@ -54,9 +54,9 @@ const MILESTONES: Milestone[] = [
 ];
 
 const CATEGORY_CONFIG = {
-  clinical: { color: 'bg-accent-blue', textColor: 'text-accent-blue', icon: Stethoscope, label: 'Clinical' },
-  financial: { color: 'bg-accent-emerald', textColor: 'text-accent-emerald', icon: DollarSign, label: 'Financial' },
-  exam: { color: 'bg-accent-amber', textColor: 'text-accent-amber', icon: GraduationCap, label: 'Exam' },
+  clinical: { color: 'bg-blue-600', textColor: 'text-blue-600', icon: Stethoscope, label: 'Clinical' },
+  financial: { color: 'bg-emerald-600', textColor: 'text-emerald-600', icon: DollarSign, label: 'Financial' },
+  exam: { color: 'bg-amber-600', textColor: 'text-amber-600', icon: GraduationCap, label: 'Exam' },
   career: { color: 'bg-purple-500', textColor: 'text-purple-600', icon: ClipboardList, label: 'Career' },
   administrative: { color: 'bg-gray-400', textColor: 'text-gray-500', icon: ClipboardList, label: 'Admin' },
 };
@@ -86,8 +86,8 @@ export default function TimelinePage() {
   return (
     <DashboardLayout>
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-primary">Your Training Timeline</h1>
-        <p className="text-muted mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Your Training Timeline</h1>
+        <p className="text-slate-500 mt-1">
           Key milestones across your {profile.specialty} residency.
         </p>
       </div>
@@ -97,7 +97,7 @@ export default function TimelinePage() {
         {Object.entries(CATEGORY_CONFIG).map(([key, cfg]) => (
           <div key={key} className="flex items-center gap-1.5 text-xs">
             <span className={cn('w-2.5 h-2.5 rounded-full', cfg.color)} />
-            <span className="text-muted">{cfg.label}</span>
+            <span className="text-slate-500">{cfg.label}</span>
           </div>
         ))}
       </div>
@@ -114,19 +114,19 @@ export default function TimelinePage() {
               <div className="flex items-center gap-3 mb-5">
                 <div className={cn(
                   'px-3 py-1.5 rounded-lg text-sm font-semibold',
-                  isCurrent ? 'bg-accent-blue text-white' : 'bg-card text-primary'
+                  isCurrent ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-900'
                 )}>
                   {YEAR_LABELS[year] || `PGY-${year}`}
                 </div>
                 {isCurrent && (
-                  <div className="flex items-center gap-1 text-xs text-accent-blue font-medium">
+                  <div className="flex items-center gap-1 text-xs text-blue-600 font-medium">
                     <MapPin className="w-3.5 h-3.5" /> You are here
                   </div>
                 )}
               </div>
 
               {/* Milestones */}
-              <div className="relative ml-4 border-l-2 border-card-border pl-6 space-y-4">
+              <div className="relative ml-4 border-l-2 border-slate-200 pl-6 space-y-4">
                 {yearMilestones.map(m => {
                   const cfg = CATEGORY_CONFIG[m.category];
                   const Icon = cfg.icon;
@@ -144,24 +144,24 @@ export default function TimelinePage() {
                       {/* Card */}
                       <button
                         onClick={() => toggleExpand(m.id)}
-                        className="w-full text-left bg-white border border-card-border rounded-xl p-4 hover:shadow-sm transition-shadow"
+                        className="w-full text-left bg-white border border-slate-200 rounded-xl p-4 hover:shadow-sm transition-shadow"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-start gap-3 min-w-0">
                             <Icon className={cn('w-4 h-4 flex-shrink-0 mt-0.5', cfg.textColor)} />
                             <div className="min-w-0">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="text-sm font-semibold text-primary">{m.title}</h3>
-                                <span className="text-xs text-muted-light">{monthName}</span>
+                                <h3 className="text-sm font-semibold text-slate-900">{m.title}</h3>
+                                <span className="text-xs text-slate-400">{monthName}</span>
                               </div>
                               {isOpen && (
                                 <div className="mt-2">
-                                  <p className="text-sm text-muted">{m.description}</p>
+                                  <p className="text-sm text-slate-500">{m.description}</p>
                                   {m.actionItems.length > 0 && (
                                     <ul className="mt-3 space-y-1.5">
                                       {m.actionItems.map((ai, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                                          <span className="w-1.5 h-1.5 rounded-full bg-accent-blue flex-shrink-0 mt-1.5" />
+                                        <li key={i} className="flex items-start gap-2 text-sm text-slate-900">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0 mt-1.5" />
                                           {ai}
                                         </li>
                                       ))}
@@ -172,9 +172,9 @@ export default function TimelinePage() {
                             </div>
                           </div>
                           {isOpen ? (
-                            <ChevronUp className="w-4 h-4 text-muted-light flex-shrink-0" />
+                            <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
                           ) : (
-                            <ChevronDown className="w-4 h-4 text-muted-light flex-shrink-0" />
+                            <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
                           )}
                         </div>
                       </button>
