@@ -311,8 +311,7 @@ function Step2({ profile, onSubmit, onBack }: { profile: UserProfile; onSubmit: 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <FieldLabel htmlFor="avgInterestRate">Avg Interest Rate (%)</FieldLabel>
-          <InputField id="avgInterestRate" type="number" step={0.1} {...register('avgInterestRate', { valueAsNumber: true })} placeholder="6.5" />
-          <p className="text-xs text-slate-500 mt-1">Enter as decimal, e.g. 0.065 for 6.5%</p>
+          <InputField id="avgInterestRate" type="number" step="any" {...register('avgInterestRate', { valueAsNumber: true })} placeholder="0.075" />
         </div>
         <div>
           <FieldLabel htmlFor="loanServicer">Loan Servicer</FieldLabel>
