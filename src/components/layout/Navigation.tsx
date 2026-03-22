@@ -11,6 +11,7 @@ import {
   CalendarClock,
   ShieldCheck,
   TrendingUp,
+  BookOpen,
   Menu,
   X,
   Stethoscope,
@@ -19,6 +20,7 @@ import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/guides', label: 'Guides', icon: BookOpen },
   { href: '/loans', label: 'Loans', icon: Landmark },
   { href: '/budget', label: 'Budget', icon: Wallet },
   { href: '/housing', label: 'Housing', icon: Home },
