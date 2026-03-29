@@ -28,8 +28,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# env files — never commit secrets
+.env
+.env.*
 .env*.local
+!.env.example
 
 # vercel
 .vercel
@@ -37,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
